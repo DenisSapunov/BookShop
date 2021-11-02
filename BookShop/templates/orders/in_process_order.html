@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/process.css' %}" type="text/css">
+
+    <div class="container-fluid justify-content-center mx-auto">
+        <div class="row">
+            <div class="books-section col-md-12 container-fluid">
+                <div class="row justify-content-center">
+                    {% if orders.all %}
+                        {% for order in orders %}
+
+                            <div class="card col-md-3 pay-card" id="user-info-card">
+                                <div class="card-body">
+                                    {% with order.items.all as items %}
+                                    <img src="{{ items.0.book.image.url }}" class="book-cover-img" width="60">
+                                    {% for item in items %}
+
+                                        <div class="d-flex justify-content-center">
+                                            <p>{{ item.book.name }}</p>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <p class="book-price">${{ item.price }}</p>
+                                        </div>
+                                    {% endfor %}
+                                    <form method="post" action="">
+                                        {% csrf_token %}
+                                        <button name="btn_pay" value="{{ order.id }}" type="submit">Оплатить
+                                            </button>
+
+                                    </form>
+                                    {% endwith %}
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="card pay-card prev-ord" id="user-info-card">
+                            <div class="card-body justify-content-centerr">
+                                <form method="post" id="look-prev">
+                                    {% csrf_token %}
+                                    <button class="btn_see" name="btn_see">Посмотреть выполенные заказы</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p id="categ-name">У вас нет заказов</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

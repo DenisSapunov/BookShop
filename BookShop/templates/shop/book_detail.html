@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ book.name }}{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/book_detail.css' %}" type="text/css">
+    <div class="card d-flex justify-content-center mx-auto">
+        <div class="card-body container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="book-cover" src="{{ book.image.url }}" alt="bookphoto"></div>
+                <div class="col-md-8">
+                    <p>Название: <span>{{ book.name }}</span></p>
+                    <p>Автор: <span>{{ book.get_author }}</span></p>
+                    <p>Жанры: <span>{{ book.get_category }}</span></p>
+                    <p>Наличие:
+                        <span id="avail">
+                            {% if book.availability == True %}
+                                Есть
+                            {% else %}
+                                Нету
+                            {% endif %}
+                        </span>
+                    </p>
+                    <!--<p>{{ book.price }}</p>
+                    <p>Описание: { book.description }}</p>-->
+                    <p>Язык: <span>{{ book.language }}</span></p>
+                    <p>Год публикации: <span>{{ book.pub_year }}</span></p>
+
+                    <div class="card" id="interact">
+                        <div class="card-body container">
+                            <!--
+                             -->
+                            <div class="row">
+                                <div class="col-6 d-flex justify-content-center">
+                                    <span id="book-price">${{ book.price }}</span>
+                                </div>
+
+                                <div class="col-6 d-flex justify-content-center" id="cart-col">
+                                    {% if book.availability %}
+                                        <form method="post" action=" {% url 'cart:cart_add' book.id %}">
+                                            {% csrf_token %}
+                                            {{ cart_book_form.quantity }}
+                                            <input type="submit" value="В корзину">
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if user.is_authenticated %}
+                        {% if not rate %}
+                            <form method="post" id="rate-form">
+                                {% csrf_token %}
+                                {{ rate_form }}
+                                <button type="submit">Оценить</button>
+                            </form>
+                        {% else %}
+                            {% for i in rate %}
+                                Вы оценили это в {{ i.rate }}
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row" id="desc-row">Описание: {{ book.description }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}" type="text/css">
+    <div class ="d-flex justify-content-center">
+        <div class="card order-cart" id="user-info-card">
+            <form method="post">
+                {% csrf_token %}
+                {{ order_form }}
+                <button type="submit" id="order-btn">Заказать</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

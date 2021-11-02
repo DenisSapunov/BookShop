@@ -1,0 +1,101 @@
+div#cart-is-empty {
+    display: none;
+}
+
+img.book-photo {
+    width: 100px;
+    height: 156px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 3px;
+}
+
+p#categ-name {
+    margin-left: 15px;
+    text-transform: none;
+}
+
+div.card {
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.book-price {
+    font-size: 32px;
+    font-weight: bold;
+    color: #9d6b5c;
+    word-break: break-word;
+    margin-left: 5px;
+}
+
+a.book-name {
+    font-size: 24px;
+}
+
+form.quant-form {
+    display: inline;
+    margin-right: 5px;
+}
+
+.formulae {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+a.remove-book>svg {
+    width: 32px;
+    height: 32px;
+}
+
+div.total {
+    margin-left: 15px;
+    width: 100%;
+    margin-right: 15px !important;
+}
+
+div.top-categ {
+    display: none;
+}
+
+div.order-cart>form>input {
+    width: 100%;
+}
+
+div.order-cart>form>button {
+    background-color: rgb(157, 107, 92);
+    color: white;
+    outline: none;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 3px;
+    height: 35px;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-top: 10px;
+}
+
+button#create-order-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    font-family: arial, sans-serif;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+button#create-order-button:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+button#order-btn {
+    background-color: #28a745 !important;
+    width: 100%;
+}
+
+.ref-right{
+    margin-left: 15px;
+}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Корзина покупок
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}" type="text/css">
+
+    <div class="alert alert-danger" role="alert" id="cart-is-empty">
+        У вас нет ничего в корзине, чтобы оформить заказ
+        <button type="button" class="close" id="close-alert-cart-empty">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="d-flex justify-content-center mx-auto">
+        <div class="container" id="main-container">
+            <div class="row">
+                <p id="categ-name">Корзина покупок</p>
+            </div>
+            {% for item in cart %}
+                {% with item.book as book %}
+                    <div class="card">
+                        <div class="row align-items-center">
+                            <div class="col-md-2"><img class="book-photo" src="{{ book.image.url }}" alt="bookphoto">
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/books/{{ book.slug }}" class="book-name">{{ book }}</a>
+                            </div>
+                            <div class="col-md-5 d-flex align-items-center">
+                                <div class="price-calc-block d-flex align-items-center">
+                                    <form action="{% url 'cart:cart_add' book.id %}" method="post" class="quant-form">
+                                        {{ item.update_quantity_form.quantity }}
+                                        <div class="hidden">
+                                            {{ item.update_quantity_form.update }}
+                                            <input type="submit" value="Обновить">
+                                            {% csrf_token %}
+                                        </div>
+                                    </form>
+                                    <span class="formulae"> × ${{ item.price }} = </span>
+                                    <span class="book-price">${{ item.total_price }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-1 d-flex justify-content-center">
+                                <a href="{% url 'cart:cart_remove' book.id %}" class="remove-book">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path fill="#e9463d"
+                                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill="#e9463d" fill-rule="evenodd"
+                                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+
+            <div class="row">
+                <div class="card total">
+                    <div class="align-items-center row">
+                        <div class="col-md-4 d-flex justify-content-center align-items-center">
+                            <a href="/" class="button light">В магазин</a>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-center align-items-center">
+                            <span>Итого: </span>
+                            <span class="book-price">${{ cart.get_total_price }}</span>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-center align-items-center">
+                            <button id="create-order-button">Оформить заказ</button>
+                        </div>
+                    </div>
+                </div>
+                {% if user.is_athenticated %}
+                <a class="ref-right" href="{% url 'order:order_history' %}">посмотреть историю заказов</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

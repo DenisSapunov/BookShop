@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(84, 65, 60);
+}
+
+a.navbar-brand {
+    margin-top: 48px;
+    font-size: 32px;
+}
+
+/* Registration window */
+
+div.card {
+    max-width: 320px;
+    margin: 10px;
+}
+
+div.card p {
+    margin-bottom: 0;
+}
+
+div.card input {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+div.card button {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/*!Registration window */
+
+/* Login window */
+
+p#invalid_login {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/*!Login window */

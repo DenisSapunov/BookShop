@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <style>
+        div.row.top-categ {
+            display: none;
+        }
+    </style>
+    <div class ="d-flex justify-content-center">
+        <div class="card" id="user-info-card">
+            <div class="card-body">
+                <p id="categ-name">
+                    <b>Профиль</b>
+                </h5>
+
+                <p>Имя пользователя: {{ user.username }}</p>
+                <p>Email: <a href="mailto: {{ user.email }}">{{ user.email }}</a>
+                </p>
+                <button class="btn btn-primary" id="logout-button" data-link="/accounts/logout">Выйти</button>
+            </div>
+        </div>
+    </div>
+    <div class="container justify-content-center"></div>
+{% endblock %}

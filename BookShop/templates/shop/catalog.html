@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Главная{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}" type="text/css">
+
+    {% block caterory %}{% endblock %}
+    <div class="container-fluid">
+        <div class="row">
+            <!--
+            <div c  lass="category-list col-md-2">
+                {% for category in categories %}
+                    <a href="/{{ category.slug }}">{{ category }}</a><br>
+                {% endfor %}
+            </div> -->
+            <div class="books-section col-md-12 container-fluid">
+
+                <div class="row justify-content-center">
+                    {% for book in books %}
+                        <div class="col-3 card" data-link="/books/{{ book.slug }}">
+                            <img class="card-img-top" src="{{ book.image.url }}" alt="Card image cap">
+
+                            <p class="price">${{ book.price }}</p>
+                            <div class="card-body">
+                                <p class="book-name">
+                                    <a href="/books/{{ book.slug }}">{{ book.name }}</a>
+                                </p>
+                                <p class="author">{{ book.get_author }}</p>
+                                <p class="book-categ">{{ book.get_category }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

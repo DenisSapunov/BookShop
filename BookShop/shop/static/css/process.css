@@ -1,0 +1,88 @@
+div.pay-card button {
+    background-color: rgb(157, 107, 92);
+    color: white;
+    outline: none;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 3px;
+    height: 35px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+div.pay-card {
+    min-width: 230px;
+    min-height: 350px;
+    max-width: 230px;
+    /*max-height: 350px;*/
+    margin-left: 10px;
+    padding-bottom: 20px;
+}
+
+div.card-body {
+    padding: 0;
+    padding-top: 12px;
+}
+
+button[name="btn_see"] {
+    padding-top: 3px;
+}
+
+form#look-prev {
+    margin-top: 50%;
+}
+
+img.book-cover-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 3px;
+}
+
+.book-price {
+    font-size: 32px;
+    font-weight: bold;
+    color: #9d6b5c;
+    word-break: break-word;
+}
+
+.top-categ {
+    display: none;
+}
+
+.prev-ord {
+    background-color: rgb(157, 107, 92);
+}
+
+button.btn_see {
+    font-size: 24px;
+    font-weight: bold;
+    word-break: break-word;
+    background-color: rgb(157, 107, 92) !important;
+}
+
+button.btn_see:hover {
+    background-color: rgb(157, 107, 92) !important;
+}
+
+button.btn_see:active {
+    background-color: rgb(157, 107, 92) !important;
+}
+
+button[name="btn_pay"] {
+    background-color: #28a745 !important;
+}
+
+button[name="btn_pay"]:hover {
+    background-color: #28a745 !important;
+}
+
+button[name="btn_pay"]:active {
+    background-color: #28a745 !important;
+}
+
+p#categ-name {
+    text-transform: none !important;
+}

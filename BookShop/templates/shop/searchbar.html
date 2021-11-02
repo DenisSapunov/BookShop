@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}}
+
+{% block body %}
+    <link rel="stylesheet" href="{% static 'css/catalog.css' %}" type="text/css">
+    <style>
+        p#categ-name {
+            text-transform: none;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="books-section col-md-12 container-fluid">
+                {% if not books %}
+                    <div class="row justify-content-center">
+                        <p id="categ-name" >Ничего не найдено!</p>
+                    </div>
+                {% endif %}
+                {% if books %}
+                    <div class="row justify-content-center">
+                        {% for book in books %}
+                            <div class="col-3 card" data-link="/books/{{ book.slug }}">
+                                <img class="card-img-top" src="{{ book.image.url }}" alt="Card image cap">
+
+                                <p class="price">${{ book.price }}</p>
+                                <div class="card-body">
+                                    <p class="book-name">
+                                        <a href="/books/{{ book.slug }}">{{ book.name }}</a>
+                                    </p>
+                                    <p class="author">{{ book.get_author }}</p>
+                                    <p class="book-categ">{{ book.get_category }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
