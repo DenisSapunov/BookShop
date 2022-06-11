@@ -34,7 +34,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'BookShop.urls'
+ROOT_URLCONF = 'djangoproject.urls'
 
 TEMPLATES = [
     {
@@ -54,7 +54,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'BookShop.wsgi.application'
+WSGI_APPLICATION = 'djangoproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -119,4 +119,4 @@ EMAIL_HOST = config('EMAIL_HOST')
 try:
     from .local_settings import *
 except ImportError:
-    from .prod_settings import *
+    from .settings_local_example import *
